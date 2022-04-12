@@ -16,5 +16,10 @@
     "bugs": {
         "url": "https://github.com/xiaohuoni/malita/issues"
     },
-    "homepage": "https://github.com/xiaohuoni/malita#readme"
+    "homepage": "https://github.com/xiaohuoni/malita#readme",
+    "dependencies": {
+        "babel-standalone": "^6.26.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0"
+    }
 }

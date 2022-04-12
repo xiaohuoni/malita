@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="malita">
+        <span>loading...</span>
+    </div>
+    <script>
+        const root = document.getElementById('malita');
+        root.innerHTML = '<span>Hello Malita!</span>';
+        root.addEventListener('click', (event) => {
+            event.target.innerHTML = '<span>Hi!</span>';
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malita</title>
+</head>
+
+<body>
+    <div id="malita">
+        <span>loading...</span>
+    </div>
+    <script>
+        function Model() {
+            this.text = 'Hello Malita!';
+            this.setText = text => this.text = text;
+        }
+
+        function View(controller) {
+            const self = this;
+            self.root = document.getElementById('malita');
+            self.root.addEventListener('click', controller.onClick)
+            this.render = () => {
+                const text = controller.getModel().text;
+                self.root.innerHTML = `<span>${text}</span>`;
+            }
+        }
+
+        function Controller(model) {
+            const self = this;
+            self.model = model;
+            this.onClick = (event) => {
+                self.model.setText('Hi!');
+                // 数据驱动页面，页面应该根据 model 更改响应 render
+                const text = controller.getModel().text;
+                event.target.innerHTML = `<span>${text}</span>`;
+            }
+            this.getModel = () => {
+                return self.model;
+            }
+        }
+        const model = new Model();
+        const controller = new Controller(model);
+        const view = new View(controller);
+        view.render();
+    </script>
+</body>
+
+</html>
