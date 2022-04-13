@@ -1,5 +1,10 @@
 {
-    "private": true,
+    "name": "malita",
+    "version": "0.0.2",
+    "main": "index.js",
+    "bin": {
+        "malita": "bin/malita.js"
+    },
     "scripts": {
         "hello": "malita"
     },
@@ -14,6 +19,8 @@
         "url": "https://github.com/xiaohuoni/malita/issues"
     },
     "homepage": "https://github.com/xiaohuoni/malita#readme",
-    "devDependencies": {},
+    "dependencies": {
+        "commander": "^9.1.0"
+    },
     "description": ""
 }
