@@ -1,7 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "hello": "malita"
+        "build": "pnpm -r --filter ./packages run build",
+        "dev": "pnpm -r --filter ./packages --parallel run dev"
     },
     "repository": {
         "type": "git",
@@ -14,6 +15,9 @@
         "url": "https://github.com/xiaohuoni/malita/issues"
     },
     "homepage": "https://github.com/xiaohuoni/malita#readme",
-    "devDependencies": {},
+    "devDependencies": {
+        "esbuild": "^0.14.36",
+        "typescript": "^4.6.3"
+    },
     "description": ""
 }

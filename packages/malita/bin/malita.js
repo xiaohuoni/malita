@@ -4,14 +4,12 @@ const {
     Command
 } = require('commander');
 
-
 const program = new Command();
 
 program
     .version(require('../package.json').version, '-v, -V', '输出当前框架的版本')
     .description('这是21天短文，挑战手写前端框架的产物框架')
-    .usage('<command> [options]')
-    .parse(process.argv);
+    .usage('<command> [options]');
 
 program.command('help')
     .alias('-h')
@@ -26,4 +24,10 @@ program.command('help')
 
 Example call:
     $ malita <command> --help`)
-    }).parse(process.argv);
+    });
+
+program.command('dev').description('框架开发命令').action(function() {
+    require('../lib/dev')
+});
+
+program.parse(process.argv);

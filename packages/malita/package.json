@@ -6,7 +6,8 @@
         "malita": "bin/malita.js"
     },
     "scripts": {
-        "hello": "malita"
+        "build": "pnpm esbuild src/** --bundle --outdir=lib",
+        "dev": "pnpm build -- --watch"
     },
     "repository": {
         "type": "git",
