@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "pnpm esbuild src/** --bundle --outdir=www",
-        "dev": "pnpm build -- --watch",
+        "dev": "malita dev",
         "serve": "cd www && serve"
     },
     "keywords": [],

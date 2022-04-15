@@ -6,7 +6,7 @@
         "malita": "bin/malita.js"
     },
     "scripts": {
-        "build": "pnpm esbuild src/** --bundle --outdir=lib",
+        "build": "pnpm esbuild src/** --bundle --outdir=lib --platform=node --external:esbuild",
         "dev": "pnpm build -- --watch"
     },
     "repository": {
@@ -21,7 +21,9 @@
     },
     "homepage": "https://github.com/xiaohuoni/malita#readme",
     "dependencies": {
-        "commander": "^9.1.0"
+        "commander": "^9.1.0",
+        "esbuild": "^0.14.36",
+        "express": "^4.17.3"
     },
     "description": ""
 }
