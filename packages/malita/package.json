@@ -6,7 +6,8 @@
         "malita": "bin/malita.js"
     },
     "scripts": {
-        "build": "pnpm esbuild src/** --bundle --outdir=lib --platform=node --external:esbuild",
+        "build": "pnpm esbuild ./src/** --bundle --outdir=lib --platform=node --external:esbuild",
+        "build:client": "pnpm esbuild ./client/** --outdir=lib/client --bundle --external:esbuild",
         "dev": "pnpm build -- --watch"
     },
     "repository": {
@@ -23,7 +24,12 @@
     "dependencies": {
         "commander": "^9.1.0",
         "esbuild": "^0.14.36",
-        "express": "^4.17.3"
+        "express": "^4.17.3",
+        "portfinder": "^1.0.28",
+        "ws": "^8.5.0"
     },
-    "description": ""
+    "description": "",
+    "devDependencies": {
+        "@types/ws": "^8.5.3"
+    }
 }
