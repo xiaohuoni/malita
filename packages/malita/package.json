@@ -1,7 +1,7 @@
 {
     "name": "malita",
     "version": "0.0.2",
-    "main": "index.js",
+    "main": "lib/index.js",
     "bin": {
         "malita": "bin/malita.js"
     },
