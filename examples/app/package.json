@@ -6,14 +6,14 @@
     "scripts": {
         "build": "pnpm esbuild src/** --bundle --outdir=www",
         "dev": "malita dev",
-        "serve": "cd www && serve"
+        "serve": "cd dist && serve"
     },
     "keywords": [],
     "author": "",
     "dependencies": {
         "@alita/flow": "^3.0.0-beta.5",
         "malita": "workspace:*",
-        "@malita/keepalive": "workspace:*",
+        "@malitajs/keepalive": "workspace:*",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-router": "^6.3.0",
