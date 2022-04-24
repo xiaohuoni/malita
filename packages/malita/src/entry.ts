@@ -1,4 +1,4 @@
-import { existsSync, mkdir, writeFileSync } from 'fs';
+import { mkdir, writeFileSync } from 'fs';
 import path from 'path';
 import type { AppData } from './appData';
 import type { IRoute } from './routes';
@@ -29,7 +29,7 @@ export const generateEntry = ({ appData, routes }: { appData: AppData; routes: I
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Routes, Route, } from 'react-router-dom';
-import KeepAliveLayout from '@malita/keepalive';
+import KeepAliveLayout from '@malitajs/keepalive';
 ${importStr}
 
 const App = () => {

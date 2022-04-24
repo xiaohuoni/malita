@@ -1,6 +1,5 @@
 export const DEFAULT_OUTDIR = 'dist';
-// export const DEFAULT_ENTRY_POINT = 'malita.tsx';
-export const DEFAULT_ENTRY_POINT = 'src/index.tsx';
+export const DEFAULT_ENTRY_POINT = 'malita.tsx';
 export const DEFAULT_TEMPLATE= '.malita';
 export const DEFAULT_GLOBAL_LAYOUTS = 'layouts/index.tsx';
 export const DEFAULT_FRAMEWORK_NAME = 'malita';

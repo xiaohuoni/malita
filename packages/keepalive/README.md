@@ -1,11 +1,11 @@
-# @malita/keepalive
+# @malitajs/keepalive
 
 react 中的状态保持组件
 
 ## 安装
 
 ```bash
-yarn add @malita/keepalive
+yarn add @malitajs/keepalive
 ```
 
 ## 使用

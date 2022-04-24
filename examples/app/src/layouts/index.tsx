@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Page, Content, Header } from '@alita/flow';
-import { useKeepOutlets } from '@malita/keepalive';
+import { useKeepOutlets } from '@malitajs/keepalive';
 import "./index.css";
 
 const Layout = () => {

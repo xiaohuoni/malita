@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { KeepAliveContext } from '@malita/keepalive';
+import { KeepAliveContext } from '@malitajs/keepalive';
 import "./users.css";
 
 const Users = () => {
