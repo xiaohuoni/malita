@@ -4,10 +4,11 @@ import path from "path";
 import fs from "fs";
 import portfinder from 'portfinder';
 import { createServer } from 'http';
-import { DEFAULT_ENTRY_POINT, DEFAULT_OUTDIR, DEFAULT_PLATFORM, DEFAULT_PORT, DEFAULT_HOST, DEFAULT_BUILD_PORT } from './constants';
+import { DEFAULT_CONFIG_FILE, DEFAULT_OUTDIR, DEFAULT_PLATFORM, DEFAULT_PORT, DEFAULT_HOST, DEFAULT_BUILD_PORT } from './constants';
 import { createWebSocketServer } from './server';
 import { style } from './styles';
 import { getAppData } from './appData';
+import { getUserConfig } from './config';
 import { getRoutes } from './routes';
 import { generateEntry } from './entry';
 import { generateHtml } from './html';
@@ -38,6 +39,7 @@ export const dev = async () => {
     const ws = createWebSocketServer(malitaServe);
 
     function sendMessage(type: string, data?: any) {
+        console.log(type)
         ws.send(JSON.stringify({ type, data }));
     }
 
@@ -45,16 +47,21 @@ export const dev = async () => {
         console.log(`App listening at http://${DEFAULT_HOST}:${port}`);
         try {
             // 生命周期
+
             // 获取项目元信息 
             const appData = await getAppData({
                 cwd
             });
+            // 获取用户数据
+            const userConfig = await getUserConfig({
+                appData, sendMessage
+            });
             // 获取 routes 配置
             const routes = await getRoutes({ appData });
             // 生成项目主入口
-            await generateEntry({ appData, routes });
+            await generateEntry({ appData, routes, userConfig });
             // 生成 Html
-            await generateHtml({ appData });
+            await generateHtml({ appData, userConfig });
             // 执行构建
             await build({
                 format: 'iife',
