@@ -2,13 +2,14 @@ import { existsSync } from 'fs';
 import path from 'path';
 import { build } from 'esbuild';
 import type { AppData } from './appData';
+import type { Server } from 'http';
 import { DEFAULT_CONFIG_FILE } from './constants';
 
 export interface UserConfig {
     title?: string;
     keepalive?: any[];
 }
-export const getUserConfig = ({ appData, sendMessage }: { appData: AppData; sendMessage: (type: string, data?: any) => void; }) => {
+export const getUserConfig = ({ appData, malitaServe }: { appData: AppData; malitaServe: Server; }) => {
     return new Promise(async (resolve: (value: UserConfig) => void, rejects) => {
         let config = {};
         const configFile = path.resolve(appData.paths.cwd, DEFAULT_CONFIG_FILE);
@@ -25,7 +26,7 @@ export const getUserConfig = ({ appData, sendMessage }: { appData: AppData; send
                             console.error(JSON.stringify(err));
                             return;
                         }
-                        sendMessage?.('reload');
+                        malitaServe.emit('REBUILD', { appData });
                     }
                 },
                 define: {
@@ -35,7 +36,9 @@ export const getUserConfig = ({ appData, sendMessage }: { appData: AppData; send
                 entryPoints: [configFile],
             });
             try {
-                config = require(path.resolve(appData.paths.absOutputPath, 'malita.config.js')).default;
+                const configFile = path.resolve(appData.paths.absOutputPath, 'malita.config.js');
+                delete require.cache[configFile];
+                config = require(configFile).default;
             } catch (error) {
                 console.error('getUserConfig error', error);
                 rejects(error);

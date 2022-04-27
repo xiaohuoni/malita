@@ -8,6 +8,7 @@ import { DEFAULT_CONFIG_FILE, DEFAULT_OUTDIR, DEFAULT_PLATFORM, DEFAULT_PORT, DE
 import { createWebSocketServer } from './server';
 import { style } from './styles';
 import { getAppData } from './appData';
+import type { AppData } from './appData';
 import { getUserConfig } from './config';
 import { getRoutes } from './routes';
 import { generateEntry } from './entry';
@@ -39,10 +40,26 @@ export const dev = async () => {
     const ws = createWebSocketServer(malitaServe);
 
     function sendMessage(type: string, data?: any) {
-        console.log(type)
         ws.send(JSON.stringify({ type, data }));
     }
+    const buildMain = async ({ appData }: { appData: AppData }) => {
+        // 获取用户数据
+        const userConfig = await getUserConfig({
+            appData, malitaServe
+        });
 
+        // 获取 routes 配置
+        const routes = await getRoutes({ appData });
+
+        // 生成项目主入口
+        await generateEntry({ appData, routes, userConfig });
+        // 生成 Html
+        await generateHtml({ appData, userConfig });
+    }
+    malitaServe.on('REBUILD', async ({ appData }) => {
+        await buildMain({ appData });
+        sendMessage('reload');
+    })
     malitaServe.listen(port, async () => {
         console.log(`App listening at http://${DEFAULT_HOST}:${port}`);
         try {
@@ -50,18 +67,9 @@ export const dev = async () => {
 
             // 获取项目元信息 
             const appData = await getAppData({
-                cwd
+                cwd, port
             });
-            // 获取用户数据
-            const userConfig = await getUserConfig({
-                appData, sendMessage
-            });
-            // 获取 routes 配置
-            const routes = await getRoutes({ appData });
-            // 生成项目主入口
-            await generateEntry({ appData, routes, userConfig });
-            // 生成 Html
-            await generateHtml({ appData, userConfig });
+            await buildMain({ appData });
             // 执行构建
             await build({
                 format: 'iife',
@@ -75,7 +83,8 @@ export const dev = async () => {
                             console.error(JSON.stringify(err));
                             return;
                         }
-                        sendMessage('reload')
+                        console.log('reload')
+                        sendMessage('reload');
                     }
                 },
                 define: {
@@ -93,8 +102,5 @@ export const dev = async () => {
         }
     });
 
-
-
-
-
+    return malitaServe;
 }
