@@ -25,6 +25,7 @@
         "commander": "^9.1.0",
         "esbuild": "^0.14.36",
         "express": "^4.17.3",
+        "http-proxy-middleware": "^2.0.6",
         "portfinder": "^1.0.28",
         "ws": "^8.5.0"
     },

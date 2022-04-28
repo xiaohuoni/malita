@@ -1,6 +1,7 @@
 import { existsSync } from 'fs';
 import path from 'path';
 import { build } from 'esbuild';
+import type { Options as ProxyOptions } from 'http-proxy-middleware';
 import type { AppData } from './appData';
 import type { Server } from 'http';
 import { DEFAULT_CONFIG_FILE } from './constants';
@@ -8,6 +9,7 @@ import { DEFAULT_CONFIG_FILE } from './constants';
 export interface UserConfig {
     title?: string;
     keepalive?: any[];
+    proxy?: { [key: string]: ProxyOptions };
 }
 export const getUserConfig = ({ appData, malitaServe }: { appData: AppData; malitaServe: Server; }) => {
     return new Promise(async (resolve: (value: UserConfig) => void, rejects) => {
