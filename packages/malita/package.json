@@ -25,12 +25,14 @@
         "commander": "^9.1.0",
         "esbuild": "^0.14.36",
         "express": "^4.17.3",
+        "glob": "^8.0.1",
         "http-proxy-middleware": "^2.0.6",
         "portfinder": "^1.0.28",
         "ws": "^8.5.0"
     },
     "description": "",
     "devDependencies": {
+        "@types/glob": "^7.2.0",
         "@types/ws": "^8.5.3"
     }
 }
