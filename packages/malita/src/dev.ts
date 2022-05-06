@@ -112,14 +112,13 @@ export const dev = async () => {
                             console.error(JSON.stringify(err));
                             return;
                         }
-                        console.log('reload')
                         sendMessage('reload');
                     }
                 },
                 define: {
                     'process.env.NODE_ENV': JSON.stringify('development'),
                 },
-                external: ['esbuild'],
+                external: ['esbuild','malita'],
                 plugins: [style()],
                 entryPoints: [appData.paths.absEntryPath],
             });

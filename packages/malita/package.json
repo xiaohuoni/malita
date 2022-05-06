@@ -22,12 +22,14 @@
     },
     "homepage": "https://github.com/xiaohuoni/malita#readme",
     "dependencies": {
+        "@alitajs/postcss-plugin-px2rem": "^0.0.1",
         "commander": "^9.1.0",
         "esbuild": "^0.14.36",
         "express": "^4.17.3",
         "glob": "^8.0.1",
         "http-proxy-middleware": "^2.0.6",
         "portfinder": "^1.0.28",
+        "postcss": "^8.4.13",
         "ws": "^8.5.0"
     },
     "description": "",
