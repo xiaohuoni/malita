@@ -1,10 +1,11 @@
-import express from 'express';
-import { build } from 'esbuild';
+
 import path from "path";
 import fs from "fs";
-import portfinder from 'portfinder';
 import { createServer } from 'http';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import { createProxyMiddleware } from '../compiled/http-proxy-middleware';
+import express from '../compiled/express';
+import { build } from 'esbuild';
+import portfinder from '../compiled/portfinder';
 import { DEFAULT_CONFIG_FILE, DEFAULT_OUTDIR, DEFAULT_PLATFORM, DEFAULT_PORT, DEFAULT_HOST, DEFAULT_BUILD_PORT } from './constants';
 import { createWebSocketServer } from './server';
 import { style } from './styles';

@@ -1,6 +1,6 @@
 {
     "name": "malita",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "main": "lib/index.js",
     "bin": {
         "malita": "bin/malita.js"
@@ -8,6 +8,7 @@
     "scripts": {
         "build": "pnpm esbuild ./src/** --bundle --outdir=lib --platform=node --external:esbuild",
         "build:client": "pnpm esbuild ./client/** --outdir=lib/client --bundle --external:esbuild",
+        "build:deps": "pnpm esno ../../scripts/bundleDeps.ts",
         "dev": "pnpm build -- --watch"
     },
     "repository": {

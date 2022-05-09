@@ -1,9 +1,9 @@
 import { existsSync } from 'fs';
 import path from 'path';
-import { Plugin, build } from 'esbuild';
-import glob from 'glob';
-import type { AppData } from './appData';
 import type { Server } from 'http';
+import { Plugin, build } from 'esbuild';
+import glob from '../compiled/glob';
+import type { AppData } from './appData';
 
 function cleanRequireCache(absMockPath: string) {
     Object.keys(require.cache).forEach(file => {

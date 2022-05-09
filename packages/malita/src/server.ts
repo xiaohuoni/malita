@@ -1,5 +1,5 @@
 import { Server as HttpServer } from 'http';
-import { WebSocketServer } from 'ws';
+import { WebSocketServer } from '../compiled/ws';
 
 export function createWebSocketServer(server: HttpServer) {
     const wss = new WebSocketServer({
