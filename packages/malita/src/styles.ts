@@ -1,14 +1,21 @@
 import esbuild, {
     Plugin,
 } from 'esbuild';
+import path from "path";
 
 // https://github.com/evanw/esbuild/issues/20#issuecomment-802269745
 export function style(): Plugin {
     return {
         name: 'style',
         setup({ onResolve, onLoad }) {
+            const cwd = process.cwd();
             onResolve({ filter: /\.css$/, namespace: 'file' }, (args) => {
-                return { path: args.path, namespace: 'style-stub' };
+                const absPath = path.resolve(
+                    cwd,
+                    path.relative(cwd, args.resolveDir),
+                    args.path,
+                );
+                return { path: absPath, namespace: 'style-stub' };
             });
             onResolve({ filter: /\.css$/, namespace: 'style-stub' }, (args) => {
                 return { path: args.path, namespace: 'style-content' };
