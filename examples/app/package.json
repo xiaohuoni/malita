@@ -6,6 +6,7 @@
     "scripts": {
         "build": "pnpm esbuild src/** --bundle --outdir=www",
         "dev": "malita dev",
+        "g": "malita g",
         "serve": "cd dist && serve"
     },
     "keywords": [],

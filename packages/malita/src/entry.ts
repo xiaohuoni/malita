@@ -1,5 +1,6 @@
 import { mkdir, writeFileSync } from 'fs';
 import path from 'path';
+import { winPath } from '@umijs/utils';
 import type { AppData } from './appData';
 import type { IRoute } from './routes';
 import type { UserConfig } from './config';
@@ -10,7 +11,7 @@ const getRouteStr = (routes: IRoute[]) => {
     let importStr = '';
     routes.forEach(route => {
         count += 1;
-        importStr += `import A${count} from '${route.element}';\n`;
+        importStr += `import A${count} from '${winPath(route.element)}';\n`;
         routesStr += `\n<Route path='${route.path}' element={<A${count} />}>`;
         if (route.routes) {
             const { routesStr: rs, importStr: is } = getRouteStr(route.routes);
@@ -40,7 +41,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, Routes, Route, } from 'react-router-dom';
 import KeepAliveLayout from '@malitajs/keepalive';
-import '${path.resolve(__dirname,'hd')}';
+import '${path.resolve(__dirname, 'hd')}';
 ${importStr}
 
 const App = () => {

@@ -33,4 +33,11 @@ program.command('dev').description('框架开发命令').action(function() {
     dev();
 });
 
+program.command('generate').alias('g').description('微生成器').action(function(_, options) {
+    const {
+        generate
+    } = require('../lib/generate');
+    generate(options.args);
+});
+
 program.parse(process.argv);

@@ -6,7 +6,7 @@
         "malita": "bin/malita.js"
     },
     "scripts": {
-        "build": "pnpm esbuild ./src/** --bundle --outdir=lib --platform=node --external:esbuild",
+        "build": "pnpm esbuild ./src/** --bundle --outdir=lib --platform=node --external:esbuild --loader:.node=file",
         "build:client": "pnpm esbuild ./client/** --outdir=lib/client --bundle --external:esbuild",
         "build:deps": "pnpm esno ../../scripts/bundleDeps.ts",
         "dev": "pnpm build -- --watch"
@@ -24,6 +24,7 @@
     "homepage": "https://github.com/xiaohuoni/malita#readme",
     "dependencies": {
         "@alitajs/postcss-plugin-px2rem": "^0.0.1",
+        "@umijs/utils": "4.0.0-rc.15",
         "commander": "^9.1.0",
         "esbuild": "^0.14.36",
         "express": "^4.17.3",
