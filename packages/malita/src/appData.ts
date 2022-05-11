@@ -1,9 +1,9 @@
 import path from 'path';
-import { DEFAULT_ENTRY_POINT, DEFAULT_OUTDIR, DEFAULT_TEMPLATE, } from './constants';
+import { DEFAULT_ENTRY_POINT, DEFAULT_OUTDIR, DEFAULT_TEMPLATE, DEFAULT_PORT } from './constants';
 
 interface Options {
     cwd: string;
-    port: number;
+    port?: number;
 }
 export interface AppData {
     paths: {
@@ -19,7 +19,7 @@ export interface AppData {
     pkg: any,
 }
 export const getAppData = ({
-    cwd, port
+    cwd, port = DEFAULT_PORT
 }: Options) => {
     return new Promise((resolve: (value: AppData) => void, rejects) => {
         // cwd，当前路径

@@ -11,7 +11,7 @@ export interface UserConfig {
     keepalive?: any[];
     proxy?: { [key: string]: ProxyOptions };
 }
-export const getUserConfig = ({ appData, malitaServe }: { appData: AppData; malitaServe: Server; }) => {
+export const getUserConfig = ({ appData, malitaServe, isProduction = false }: { appData: AppData; malitaServe?: Server; isProduction?: boolean }) => {
     return new Promise(async (resolve: (value: UserConfig) => void, rejects) => {
         let config = {};
         const configFile = path.resolve(appData.paths.cwd, DEFAULT_CONFIG_FILE);
@@ -22,17 +22,17 @@ export const getUserConfig = ({ appData, malitaServe }: { appData: AppData; mali
                 logLevel: 'error',
                 outdir: appData.paths.absOutputPath,
                 bundle: true,
-                watch: {
+                watch: isProduction ? false : {
                     onRebuild: (err, res) => {
                         if (err) {
                             console.error(JSON.stringify(err));
                             return;
                         }
-                        malitaServe.emit('REBUILD', { appData });
+                        malitaServe?.emit('REBUILD', { appData });
                     }
                 },
                 define: {
-                    'process.env.NODE_ENV': JSON.stringify('development'),
+                    'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development'),
                 },
                 external: ['esbuild'],
                 entryPoints: [configFile],

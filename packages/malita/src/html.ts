@@ -4,7 +4,7 @@ import type { AppData } from './appData';
 import { DEFAULT_FRAMEWORK_NAME, DEFAULT_OUTDIR } from './constants';
 import type { UserConfig } from './config';
 
-export const generateHtml = ({ appData, userConfig }: { appData: AppData; userConfig: UserConfig }) => {
+export const generateHtml = ({ appData, userConfig, isProduction = false }: { appData: AppData; userConfig: UserConfig; isProduction?: boolean; }) => {
     return new Promise((resolve, rejects) => {
         const title = userConfig?.title ?? appData.pkg.name ?? 'Malita';
         const content = `
@@ -20,8 +20,8 @@ export const generateHtml = ({ appData, userConfig }: { appData: AppData; userCo
             <div id="malita">
                 <span>loading...</span>
             </div>
-            <script src="/${DEFAULT_OUTDIR}/${DEFAULT_FRAMEWORK_NAME}.js"></script>
-            <script src="/malita/client.js"></script>
+            <script src="${isProduction ? '.' : `/${DEFAULT_OUTDIR}`}/${DEFAULT_FRAMEWORK_NAME}.js"></script>
+            ${isProduction ? '' : '<script src="/malita/client.js"></script>'}
         </body>
         </html>`;
         try {

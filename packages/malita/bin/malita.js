@@ -33,6 +33,13 @@ program.command('dev').description('框架开发命令').action(function() {
     dev();
 });
 
+program.command('build').description('框架构建命令').action(function() {
+    const {
+        build
+    } = require('../lib/build');
+    build();
+});
+
 program.command('generate').alias('g').description('微生成器').action(function(_, options) {
     const {
         generate

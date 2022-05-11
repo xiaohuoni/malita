@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "pnpm esbuild src/** --bundle --outdir=www",
+        "build": "malita build",
         "dev": "malita dev",
         "g": "malita g",
         "serve": "cd dist && serve"
